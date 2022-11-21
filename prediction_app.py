@@ -73,8 +73,8 @@ class production_prediction():
         df3['proppant_fluid_ratio'] = self.rs_proppant_fluid_ratio.fit_transform(df3[['proppant_fluid_ratio']].values)
         df3['year_on_production'] = self.mm_year_on_production.fit_transform(df3[['year_on_production']].values)
 
-        columns_selected = ['md_(ft)', 'tvd_(ft)', 'operator', 'p-velocity', 'footage_lateral_length', 'youngs_modulus', 
-                            'isip', 'pump_rate', 'total_number_of_stages', 'proppant_volume', 'proppant_fluid_ratio']
+        columns_selected = ['md_(ft)', 'tvd_(ft)', 'operator', 'p-velocity', 's-velocity', 'youngs_modulus', 'isip', 
+                            'pump_rate', 'total_number_of_stages', 'proppant_volume', 'proppant_fluid_ratio']
 
         return df3[columns_selected]
 
