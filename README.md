@@ -1,5 +1,5 @@
 
-<img src="img/extraction.jpg" alt="logo" style="zoom:100%;" />
+<img src="image/extraction.jpg" alt="logo" style="zoom:100%;" />
 
 <h1>Oil Production Prediction</h1>
 
