@@ -84,131 +84,135 @@ class production_prediction():
 
         return df4
 
-predictor = production_prediction()
+def run_app():
 
-st.set_page_config(layout='wide')
+    predictor = production_prediction()
 
-st.title('Oil Production Prediction App')
+    st.set_page_config(layout='wide')
 
-st.header('Fill the boxes with data and click on the button below to make predictions')
+    st.title('Oil Production Prediction App')
 
-c1, c2, c3, c4, c5 = st.columns((1, 1, 1, 1, 1))
+    st.header('Fill the boxes with data and click on the button below to make predictions')
 
-df = pd.read_csv('data/dataset.csv')
+    c1, c2, c3, c4, c5 = st.columns((1, 1, 1, 1, 1))
 
-old_column_names = ['treatment company', 'azimuth', 'md (ft)', 'tvd (ft)', 'date on production', 'operator', 'footage lateral length', 'well spacing', 
-                    'porpoise deviation', 'porpoise count', 'shale footage', 'acoustic impedance', 'log permeability', 'porosity', 'poisson ratio', 
-                    'water saturation', 'toc', 'vcl', 'p-velocity', 's-velocity', 'youngs modulus', 'isip', 'breakdown pressure', 'pump rate', 
-                    'total number of stages', 'proppant volume', 'proppant fluid ratio', 'production']
+    df = pd.read_csv('data/dataset.csv')
 
-new_column_names = [old_name.replace(' ', '_') for old_name in old_column_names]
+    old_column_names = ['treatment company', 'azimuth', 'md (ft)', 'tvd (ft)', 'date on production', 'operator', 'footage lateral length', 'well spacing', 
+                        'porpoise deviation', 'porpoise count', 'shale footage', 'acoustic impedance', 'log permeability', 'porosity', 'poisson ratio', 
+                        'water saturation', 'toc', 'vcl', 'p-velocity', 's-velocity', 'youngs modulus', 'isip', 'breakdown pressure', 'pump rate', 
+                        'total number of stages', 'proppant volume', 'proppant fluid ratio', 'production']
 
-df.columns = new_column_names
+    new_column_names = [old_name.replace(' ', '_') for old_name in old_column_names]
 
-date_on_production = c1.date_input( "First Production Date:", datetime.date(2022, 1, 1))
-c1.text('Selected: {}'.format(date_on_production))
+    df.columns = new_column_names
 
-treatment_company = c2.selectbox('Treatement Company:', (df['treatment_company'].unique()))
-c2.text('Selected: {}'.format(treatment_company))
+    date_on_production = c1.date_input( "First Production Date:", datetime.date(2022, 1, 1))
+    c1.text('Selected: {}'.format(date_on_production))
 
-operator = c3.selectbox('Operator:', (df['operator'].unique()))
-c3.text('Selected: {}'.format(operator))
+    treatment_company = c2.selectbox('Treatement Company:', (df['treatment_company'].unique()))
+    c2.text('Selected: {}'.format(treatment_company))
 
-azimuth = c4.number_input('Well Drilling Direction:')
-c4.text('Current Number: {}'.format(azimuth))
+    operator = c3.selectbox('Operator:', (df['operator'].unique()))
+    c3.text('Selected: {}'.format(operator))
 
-md_ft = c5.number_input('Measure Depth (ft):')
-c5.text('Current Number: {}'.format(md_ft))
+    azimuth = c4.number_input('Well Drilling Direction:')
+    c4.text('Current Number: {}'.format(azimuth))
 
-tvd_ft = c1.number_input('True Vertical Depth (ft):')
-c1.text('Current Number: {}'.format(tvd_ft))
+    md_ft = c5.number_input('Measure Depth (ft):')
+    c5.text('Current Number: {}'.format(md_ft))
 
-footage_lateral_length = c2.number_input('Horizontal Well Section:')
-c2.text('Current Number: {}'.format(footage_lateral_length))
+    tvd_ft = c1.number_input('True Vertical Depth (ft):')
+    c1.text('Current Number: {}'.format(tvd_ft))
 
-well_spacing = c3.number_input('Distance to the Closest Nearby Well:')
-c3.text('Current Number: {}'.format(well_spacing))
+    footage_lateral_length = c2.number_input('Horizontal Well Section:')
+    c2.text('Current Number: {}'.format(footage_lateral_length))
 
-porpoise_deviation = c4.number_input('Porpoise Deviation (ft):')
-c4.text('Current Number: {}'.format(porpoise_deviation))
+    well_spacing = c3.number_input('Distance to the Closest Nearby Well:')
+    c3.text('Current Number: {}'.format(well_spacing))
 
-porpoise_count = c5.number_input('Porpoise Count:')
-c5.text('Current Number: {}'.format(porpoise_count))
+    porpoise_deviation = c4.number_input('Porpoise Deviation (ft):')
+    c4.text('Current Number: {}'.format(porpoise_deviation))
 
-shale_footage = c1.number_input('Shale Footage:')
-c1.text('Current Number: {}'.format(shale_footage))
+    porpoise_count = c5.number_input('Porpoise Count:')
+    c5.text('Current Number: {}'.format(porpoise_count))
 
-acoustic_impedance = c2.number_input('Acoustic Impedance (ft/s * g/cc):')
-c2.text('Current Number: {}'.format(acoustic_impedance))
+    shale_footage = c1.number_input('Shale Footage:')
+    c1.text('Current Number: {}'.format(shale_footage))
 
-log_permeability = c3.number_input('Log Permeability:')
-c3.text('Current Number: {}'.format(log_permeability))
+    acoustic_impedance = c2.number_input('Acoustic Impedance (ft/s * g/cc):')
+    c2.text('Current Number: {}'.format(acoustic_impedance))
 
-porosity = c4.number_input('Porosity:')
-c4.text('Current Number: {}'.format(porosity))
+    log_permeability = c3.number_input('Log Permeability:')
+    c3.text('Current Number: {}'.format(log_permeability))
 
-poisson_ratio = c5.number_input('Poisson Ratio:')
-c5.text('Current Number: {}'.format(poisson_ratio))
+    porosity = c4.number_input('Porosity:')
+    c4.text('Current Number: {}'.format(porosity))
 
-water_saturation = c1.number_input('Water Saturation:')
-c1.text('Current Number: {}'.format(water_saturation))
+    poisson_ratio = c5.number_input('Poisson Ratio:')
+    c5.text('Current Number: {}'.format(poisson_ratio))
 
-toc = c2.number_input('Total Organic Carbon:')
-c2.text('Current Number: {}'.format(toc))
+    water_saturation = c1.number_input('Water Saturation:')
+    c1.text('Current Number: {}'.format(water_saturation))
 
-vcl = c3.number_input('Amount of Clay Minerals:')
-c3.text('Current Number: {}'.format(vcl))
+    toc = c2.number_input('Total Organic Carbon:')
+    c2.text('Current Number: {}'.format(toc))
 
-p_velocity = c4.number_input('Velocity of P-waves (ft/s):')
-c4.text('Current Number: {}'.format(p_velocity))
+    vcl = c3.number_input('Amount of Clay Minerals:')
+    c3.text('Current Number: {}'.format(vcl))
 
-s_velocity = c5.number_input('Velocity of S-waves (ft/s):')
-c5.text('Current Number: {}'.format(s_velocity))
+    p_velocity = c4.number_input('Velocity of P-waves (ft/s):')
+    c4.text('Current Number: {}'.format(p_velocity))
 
-youngs_modulus = c1.number_input('Youngs Modulus (giga pascals):')
-c1.text('Current Number: {}'.format(youngs_modulus))
+    s_velocity = c5.number_input('Velocity of S-waves (ft/s):')
+    c5.text('Current Number: {}'.format(s_velocity))
 
-isip = c2.number_input('Instantaneous Shut-in Pressure:')
-c2.text('Current Number: {}'.format(isip))
+    youngs_modulus = c1.number_input('Youngs Modulus (giga pascals):')
+    c1.text('Current Number: {}'.format(youngs_modulus))
 
-breakdown_pressure = c3.number_input('Breakdown Pressure:')
-c3.text('Current Number: {}'.format(breakdown_pressure))
+    isip = c2.number_input('Instantaneous Shut-in Pressure:')
+    c2.text('Current Number: {}'.format(isip))
 
-pump_rate = c4.number_input('Pump Rate:')
-c4.text('Current Number: {}'.format(pump_rate))
+    breakdown_pressure = c3.number_input('Breakdown Pressure:')
+    c3.text('Current Number: {}'.format(breakdown_pressure))
 
-total_number_of_stages = c5.number_input('Total Number of Stages:')
-c5.text('Current Number: {}'.format(total_number_of_stages))
+    pump_rate = c4.number_input('Pump Rate:')
+    c4.text('Current Number: {}'.format(pump_rate))
 
-proppant_volume = c1.number_input('Proppant Volume (lbs):')
-c1.text('Current Number: {}'.format(proppant_volume))
+    total_number_of_stages = c5.number_input('Total Number of Stages:')
+    c5.text('Current Number: {}'.format(total_number_of_stages))
 
-proppant_fluid_ratio = c2.number_input('Proppant Fluid Ratio (lbs/gallon):')
-c2.text('Current Number: {}'.format(proppant_fluid_ratio))
+    proppant_volume = c1.number_input('Proppant Volume (lbs):')
+    c1.text('Current Number: {}'.format(proppant_volume))
 
-if st.button('Predict'):
+    proppant_fluid_ratio = c2.number_input('Proppant Fluid Ratio (lbs/gallon):')
+    c2.text('Current Number: {}'.format(proppant_fluid_ratio))
 
-    production = 0
+    if st.button('Predict'):
 
-    df1 = pd.DataFrame({'treatment_company': [treatment_company], 'azimuth': [azimuth], 'md_(ft)': [md_ft], 'tvd_(ft)': [tvd_ft], 
-                        'date_on_production': [date_on_production], 'operator': [operator], 'footage_lateral_length': [footage_lateral_length], 
-                        'well_spacing': [well_spacing], 'porpoise_deviation': [porpoise_deviation], 'porpoise_count': [porpoise_count], 
-                        'shale_footage': [shale_footage], 'acoustic_impedance': [acoustic_impedance], 'log_permeability': [log_permeability], 
-                        'porosity': [porosity], 'poisson_ratio': [poisson_ratio], 'water_saturation': [water_saturation], 'toc': [toc], 'vcl': [vcl], 
-                        'p-velocity': [p_velocity], 's-velocity': [s_velocity], 'youngs_modulus': [youngs_modulus], 'isip': [isip], 
-                        'breakdown_pressure': [breakdown_pressure], 'pump_rate': [pump_rate], 'total_number_of_stages': [total_number_of_stages], 
-                        'proppant_volume': [proppant_volume], 'proppant_fluid_ratio': [proppant_fluid_ratio], 'production': [production]})
+        production = 0
 
-    df2 = predictor.data_cleaning(df1)
-    df3 = predictor.feature_engineering(df2)
-    df4 = predictor.data_preparation(df3)
-    prediction = predictor.get_prediction(df4)
+        df1 = pd.DataFrame({'treatment_company': [treatment_company], 'azimuth': [azimuth], 'md_(ft)': [md_ft], 'tvd_(ft)': [tvd_ft], 
+                            'date_on_production': [date_on_production], 'operator': [operator], 'footage_lateral_length': [footage_lateral_length], 
+                            'well_spacing': [well_spacing], 'porpoise_deviation': [porpoise_deviation], 'porpoise_count': [porpoise_count], 
+                            'shale_footage': [shale_footage], 'acoustic_impedance': [acoustic_impedance], 'log_permeability': [log_permeability], 
+                            'porosity': [porosity], 'poisson_ratio': [poisson_ratio], 'water_saturation': [water_saturation], 'toc': [toc], 'vcl': [vcl], 
+                            'p-velocity': [p_velocity], 's-velocity': [s_velocity], 'youngs_modulus': [youngs_modulus], 'isip': [isip], 
+                            'breakdown_pressure': [breakdown_pressure], 'pump_rate': [pump_rate], 'total_number_of_stages': [total_number_of_stages], 
+                            'proppant_volume': [proppant_volume], 'proppant_fluid_ratio': [proppant_fluid_ratio], 'production': [production]})
 
-    production = prediction['production'][0]
+        df2 = predictor.data_cleaning(df1)
+        df3 = predictor.feature_engineering(df2)
+        df4 = predictor.data_preparation(df3)
+        prediction = predictor.get_prediction(df4)
 
-    st.header('12 months cumulative production for the well is: {} mmcf'.format(round(production, 2)))
+        production = prediction['production'][0]
 
-else:
-    st.header('Click the button to make a prediction')
+        st.header('12 months cumulative production for the well is: {} mmcf'.format(round(production, 2)))
 
-# if __name__ == "__main__":
+    else:
+        st.header('Click the button to make a prediction')
+
+if __name__ == "__main__":
+    
+    run_app()
