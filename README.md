@@ -127,5 +127,6 @@ Boruta (feature selection algorithm) was used to select features for the model a
 <li>Find a better way to replace missing values.</li>
 <li>Find the best way of dealing with the outliers.</li>
 <li>Search for models that could perform better with this small dataset.</li>
+<li>Try some dimensionality reduction algorithm to improve the model prediction capabilities.</li>
 <li>Improve the <a href="https://m4theus4ndr4de-regression-oil-production--prediction-app-lhyr2y.streamlit.app/" target="_blank">Streamlit app</a> adding more functions.</li>
 </ul>
